@@ -4,8 +4,11 @@ const q = faunadb.query;
 const client = new faunadb.Client({ secret: 'fnADZPpx4EACAGpcBmat4T-ZHYRIdX607Upcve3x' });
 
 module.exports = async function (context, req) {
-    /* parse the string body into an actual note object */
-    const data = JSON.parse(context.body);
+    const data = {
+        title: req.body.title,
+        body: req.body.body
+    };
+
     context.log('Function `notes-create` is invoked', data);
 
     const notesDocument = { data };
